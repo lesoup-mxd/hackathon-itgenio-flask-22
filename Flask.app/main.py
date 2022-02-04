@@ -1,9 +1,7 @@
-from flask import Flask, render_template, redirect, url_for
-history = {}
+from flask import Flask, render_template
+
 
 app = Flask(__name__)
 @app.route("/")
 def index():
-    global history
-    history = {}
     return render_template("index.html")
