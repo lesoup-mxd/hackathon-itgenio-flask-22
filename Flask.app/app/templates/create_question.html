@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+  <head>
+      
+  </head>
+  
+  <body>
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.csrf_token() }}
+     {% for field in form if field.name != "csrf_token" and field.name != "message" %}
+      <p>{{ field.label() }}</p>
+      <p>
+       {{ field }}
+       {% for error in field.errors %}
+        {{ error }}
+       {% endfor %}
+      </p>
+     {% endfor %}
+     {{ form.message() }}
+    </form>
+    <p><a href="{{ url_for('index') }}">Go back</a></p>
+  </body>

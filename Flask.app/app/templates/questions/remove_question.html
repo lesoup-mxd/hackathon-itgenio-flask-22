@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1 align="center">Delete question</h1>
+    <p align="center"><a class="admin-link" href="{{ url_for('questions') }}">Go back to questions</a></p>
+    <p align="center"><a class="admin-link" href="{{ url_for('edit_question', id=question.id) }}">Go to editing</a></p>
+    <div class="content">
+        <p>Are you sure you want to delete question{{ question.name }}?</p>
+        <form method="post">
+            <input type="submit">
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"  integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+</head>
+
+<body>
+    {% block menu %}
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Start</a></li>
+                <li><a href="{{ url_for('questions') }}">Questions</a></li>
+            </ul>
+        </nav>
+    {% endblock %}
+
+    {% block cookie %}
+        <div class="cookie_notice">
+            This site uses cookies and services for collecting technical data of visitors (data on IP address, location, etc.) to ensure operability and improve the quality of service. By continuing to use our site, you automatically consent to the use of these technologies.
+            <div>
+                <a class="cookie_btn" id="cookie_close" href="#close">Accept</a>
+                <a class="cookie_btn" href="#politika">Privacy policy</a>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block scripts %}
+        <script src="{{ url_for('static', filename='js/cookie.js') }}"></script>
+        <script type="text/javascript">
+
+            let cookiecook = getCookie("cookiecook"),
+            cookiewin = document.getElementsByClassName('cookie_notice')[0];
+
+            if (cookiecook != "no") {
+
+                cookiewin.style.display="block";
+
+                document.getElementById("cookie_close").addEventListener("click", function(){
+                    cookiewin.style.display="none";
+
+                    let date = new Date;
+                    date.setMinutes(date.getMinutes() + 5);
+                    document.cookie = "cookiecook=no; path=/; expires=" + date.toUTCString();
+                });
+            }
+        </script>
+    {% endblock %}
+</body>
+</html>
